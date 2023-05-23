@@ -1,6 +1,15 @@
 import React from 'react';
 
+const sortItems = ['популярности', 'цене', 'алфавиту']
+
 export const Sort = () => {
+  
+  const [showPopup, setShowPopup] = React.useState(false)
+  
+  const onClickShowPopupHandler = () => {
+    setShowPopup(!showPopup)
+  }
+  
   return (
     <div className="sort">
       <div className="sort__label">
@@ -17,15 +26,22 @@ export const Sort = () => {
           />
         </svg>
         <b>Сортировка по:</b>
-        <span>популярности</span>
+        <span onClick={onClickShowPopupHandler}>популярности</span>
       </div>
-      <div className="sort__popup">
-        <ul>
-          <li className="active">популярности</li>
-          <li>цене</li>
-          <li>алфавиту</li>
-        </ul>
-      </div>
+      {showPopup
+        ?
+        <div className="sort__popup">
+          <ul>
+            {sortItems.map(item => {
+              return (
+                <li key={item}>{item}</li>
+              )
+            })}
+          </ul>
+        </div>
+        :
+        null
+      }
     </div>
   );
 };

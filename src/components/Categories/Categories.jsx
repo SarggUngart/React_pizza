@@ -7,7 +7,7 @@ const categories = ['Все', 'Мясные', 'Вегетарианская', '�
 export const Categories = () => {
   const [category, setCategory] = React.useState(categories[0])
   
-  const onClickSetActiveCat = (activeCategory) => {
+  const onClickActiveCatHandler = (activeCategory) => {
     setCategory(activeCategory)
   }
   
@@ -18,7 +18,7 @@ export const Categories = () => {
           const activeCategoryClass = category === cat ? 'active' : ''
           return (
             <li key={cat}
-                onClick={onClickSetActiveCat.bind(this, cat)}
+                onClick={onClickActiveCatHandler.bind(this, cat)}
                 className={activeCategoryClass}>
               {cat}
             </li>
