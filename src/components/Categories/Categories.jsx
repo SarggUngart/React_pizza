@@ -18,8 +18,8 @@ export const Categories = () => {
           const activeCategoryClass = category === cat ? 'active' : ''
           return (
             <li key={cat}
-                onClick={onClickActiveCatHandler.bind(this, cat)}
-                className={activeCategoryClass}>
+                className={activeCategoryClass}
+                onClick={() => onClickActiveCatHandler(cat)}>
               {cat}
             </li>
           )
