@@ -8,7 +8,7 @@ export const Sort = () => {
   const [sortList, setSortList] = React.useState(sortItems[0])
   
   const onClickShowPopupHandler = () => {
-    setShowPopup(true)
+    setShowPopup(!showPopup)
   }
   
   const onClickActiveSortHandler = (activeSort) => {
@@ -35,7 +35,7 @@ export const Sort = () => {
         <span onClick={onClickShowPopupHandler}>{sortList}</span>
       </div>
       {showPopup
-        ?
+       &&
         <div className="sort__popup">
           <ul>
             {sortItems.map(item => {
@@ -49,8 +49,6 @@ export const Sort = () => {
             })}
           </ul>
         </div>
-        :
-        null
       }
     </div>
   );
