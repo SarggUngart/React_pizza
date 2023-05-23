@@ -3,18 +3,20 @@ import {AddBtn} from "../Buttons/AddBtn";
 
 
 export const PizzaBlock = (props) => {
-  const {title, imageUrl, price, sizes} = props
-  
-  console.log()
-  
+  const {title, imageUrl, price, sizes, types} = props
+  const sizeName = ['тонкое', 'традиционное']
   const [count, setCount] = React.useState(0)
   const [activeSize, setActiveSize] = React.useState(sizes[0])
+  const [activeType, setActiveType] = React.useState(types[0])
+  
   
   const increaseCount = () => setCount(prev => prev + 1)
   const onClickActiveSizeHandler = (size) => {
     setActiveSize(size)
   }
-  
+  const onClockActiveTypeHandler = (type) => {
+    setActiveType(type)
+  }
   
   return (
     <div className="pizza-block">
@@ -26,8 +28,15 @@ export const PizzaBlock = (props) => {
       <h4 className="pizza-block__title">{title}</h4>
       <div className="pizza-block__selector">
         <ul>
-          <li className="active">тонкое</li>
-          <li>традиционное</li>
+          {types.map(t => {
+            const activeTypeClass = activeType === t ? 'active' : ''
+            return (
+              <li key={t}
+                  className={activeTypeClass}
+                  onClick={() => onClockActiveTypeHandler(t)}
+              >{sizeName[t]}</li>
+            )
+          })}
         </ul>
         <ul>
           {sizes.map(size => {
@@ -37,7 +46,7 @@ export const PizzaBlock = (props) => {
                 className={activeSizeClass}
                 key={size}
                 onClick={() => onClickActiveSizeHandler(size)}>
-                {size}
+                {size} см
               </li>
             )
           })}
