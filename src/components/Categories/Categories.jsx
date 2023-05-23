@@ -2,7 +2,7 @@ import React from 'react';
 
 export const Categories = () => {
   return (
-    <div className="categories">
+    <nav className="categories">
       <ul>
         <li className="active">Все</li>
         <li>Мясные</li>
@@ -11,7 +11,7 @@ export const Categories = () => {
         <li>Острые</li>
         <li>Закрытые</li>
       </ul>
-    </div>
+    </nav>
   );
 };
 
