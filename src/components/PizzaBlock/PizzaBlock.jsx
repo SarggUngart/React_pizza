@@ -3,10 +3,18 @@ import {AddBtn} from "../Buttons/AddBtn";
 
 
 export const PizzaBlock = (props) => {
-  const {title, imageUrl, id, price} = props
+  const {title, imageUrl, price, sizes} = props
+  
+  console.log()
   
   const [count, setCount] = React.useState(0)
+  const [activeSize, setActiveSize] = React.useState(sizes[0])
+  
   const increaseCount = () => setCount(prev => prev + 1)
+  const onClickActiveSizeHandler = (size) => {
+    setActiveSize(size)
+  }
+  
   
   return (
     <div className="pizza-block">
@@ -22,9 +30,17 @@ export const PizzaBlock = (props) => {
           <li>традиционное</li>
         </ul>
         <ul>
-          <li className="active">26 см.</li>
-          <li>30 см.</li>
-          <li>40 см.</li>
+          {sizes.map(size => {
+            const activeSizeClass = activeSize === size ? 'active' : ''
+            return (
+              <li
+                className={activeSizeClass}
+                key={size}
+                onClick={() => onClickActiveSizeHandler(size)}>
+                {size}
+              </li>
+            )
+          })}
         </ul>
       </div>
       <div className="pizza-block__bottom">
@@ -32,7 +48,7 @@ export const PizzaBlock = (props) => {
         
         <AddBtn count={count}
                 increaseCount={increaseCount}/>
-        
+      
       </div>
     </div>
   );
