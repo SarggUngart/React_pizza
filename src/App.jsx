@@ -5,9 +5,7 @@ import {NotFound} from "./components/Pages/NotFound/NotFound";
 import {Route, Routes} from "react-router-dom";
 import Cart from "./components/Pages/Cart/Cart";
 
-
 export function App() {
-  
   
   return (<div className="wrapper">
     <Header/>

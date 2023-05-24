@@ -10,7 +10,7 @@ export const Categories = () => {
   }
   
   return (<nav className="categories">
-    <ul>
+    <ul className='categories__list'>
       {categories.map(cat => {
         const activeCategoryClass = category === cat ? 'active' : ''
         return (<li key={cat}
