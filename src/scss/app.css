@@ -149,6 +149,7 @@ a {
   border-width: 2px;
 }
 .button--black {
+  justify-content: center;
   background-color: #232323;
 }
 .button--black:hover, .button--black:active {
@@ -263,16 +264,25 @@ a {
 
 .sort {
   position: relative;
+  user-select: none;
+}
+.sort__icon * {
+  width: 10px;
+  height: 20px;
+  cursor: pointer;
+  fill: #2a2a2a;
+  transition: fill 0.2s linear;
+}
+.sort__icon *:active {
+  transform: translateY(0.5px);
+}
+.sort__icon *:hover {
+  fill: #fe5f1e;
 }
 .sort__label {
   display: flex;
+  gap: 10px;
   align-items: center;
-}
-.sort__label svg {
-  margin-right: 8px;
-}
-.sort__label b {
-  margin-right: 8px;
 }
 .sort__label span {
   color: #fe5f1e;
@@ -483,6 +493,7 @@ body {
 }
 .cart__item {
   display: flex;
+  gap: 20px;
   width: 100%;
   border-top: 1px solid #f6f6f6;
   padding-top: 30px;
@@ -516,6 +527,7 @@ body {
 }
 .cart__item-count {
   display: flex;
+  gap: 10px;
   align-items: center;
   justify-content: space-between;
   width: 13%;
@@ -607,27 +619,24 @@ body {
 .cart__bottom-buttons .pay-btn {
   font-size: 16px;
   font-weight: 600;
-  width: 210px;
   padding: 16px;
 }
 .cart--empty {
-  margin: 0 auto;
-  width: 560px;
-  text-align: center;
+    margin: 0 auto;
+    max-width: 560px;
+    width: 100%;
+    text-align: center;
 }
 .cart--empty h2 {
   font-size: 32px;
-  margin-bottom: 10px;
+  margin: 50px 0;
 }
 .cart--empty p {
+  margin: 30px 0 50px 0;
   font-size: 18px;
   line-height: 145.4%;
   letter-spacing: 0.01em;
   color: #777777;
-}
-.cart--empty icon {
-  position: relative;
-  top: 2px;
 }
 .cart--empty img {
   display: block;
@@ -637,7 +646,7 @@ body {
 .cart--empty .button--black {
   padding: 12px 0 14px;
   width: 230px;
-  margin: 0 auto;
+  margin: 80px auto;
   font-weight: 600;
   font-size: 18px;
 }

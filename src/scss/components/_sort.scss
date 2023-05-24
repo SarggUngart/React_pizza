@@ -2,18 +2,28 @@
 
 .sort {
   position: relative;
+  user-select: none;
+
+  &__icon * {
+    width: 10px;
+    height: 20px;
+    cursor: pointer;
+    fill: #2a2a2a;
+    transition: fill 0.2s linear;
+
+    &:active {
+      transform: translateY(0.5px);
+    }
+    &:hover{
+      fill:  #fe5f1e;;
+    }
+  }
 
   &__label {
     display: flex;
+    gap: 10px;
     align-items: center;
 
-    svg {
-      margin-right: 8px;
-    }
-
-    b {
-      margin-right: 8px;
-    }
 
     span {
       color: $orange;

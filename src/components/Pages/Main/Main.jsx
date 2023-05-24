@@ -18,9 +18,8 @@ export const Main = () => {
     fetchData();
   }, [])
   
-  
   return (
-    <>
+    <div  className='container'>
       <div className="content__top">
         <Categories/>
         <Sort/>
@@ -42,7 +41,7 @@ export const Main = () => {
           })
         }
       </div>
-    </>
+    </div>
   
   );
 };
