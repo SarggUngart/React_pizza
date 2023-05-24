@@ -1,0 +1,31 @@
+.title {
+  margin: 100px 0;
+  text-align: center;
+  font-size: 56px;
+}
+
+.btn {
+  margin: auto;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  background-color: #FE5F1EFF;
+  border: none;
+  border-radius: 30px;
+  padding: 10px 20px;
+  min-width: 100px;
+  text-align: center;
+  cursor: pointer;
+  color: #fff;
+  font-weight: 600;
+  font-size: 16px;
+  transition: background-color 0.2s linear;
+
+  &:hover {
+    background-color: #f24701;
+  }
+
+  &:active {
+    transform: translateY(1px);
+  }
+}

@@ -1,52 +1,26 @@
 import React from 'react';
 import {Header} from "./components/Header/Header";
-import {Categories} from "./components/Categories/Categories";
-import {Sort} from "./components/Sort/Sort";
-import {PizzaBlock} from "./components/PizzaBlock/PizzaBlock";
-import {Skeleton} from "./components/UI/Skeleton";
+import {Main} from "./components/Pages/Main/Main";
+import {NotFound} from "./components/Pages/NotFound/NotFound";
+import {Route, Routes} from "react-router-dom";
+import Cart from "./components/Pages/Cart/Cart";
 
 
 export function App() {
-  const [items, setItems] = React.useState([])
-  
-  React.useEffect(() => {
-    async function fetchData() {
-      const response = await fetch('https://646b73777d3c1cae4ce3d264.mockapi.io/items');
-      const responseData = await response.json();
-      setItems(responseData);
-    }
-    
-    fetchData();
-  }, [])
   
   
   return (<div className="wrapper">
     <Header/>
-    <div className="content">
+    <main className="content">
       <div className="container">
-        <div className="content__top">
-          <Categories/>
-          <Sort/>
-        </div>
-        <h2 className="content__title">Все пиццы</h2>
-        <main className="content__items">
-          {items.length
-            ?
-            items.map(item => {
-              return (<PizzaBlock key={item.id}
-                                  {...item}
-              />)
-            })
-            :
-            [...new Array(10)].map((_, i) => {
-              return (
-                <Skeleton key={i}/>
-              )
-            })
-          }
-        </main>
+        <Routes>
+          <Route path='/' element={<Main/>}/>
+          <Route path='cart' element={<Cart/>}/>
+          <Route path='*' element={<NotFound/>}/>
+        </Routes>
       </div>
-    </div>
+    </main>
+  
   </div>);
 }
 

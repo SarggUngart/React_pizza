@@ -5,7 +5,8 @@ export const AddBtn = (props) => {
   const {count, increaseCount} = props
   
   return (
-    <button className="button button--outline button--add">
+    <button className="button button--outline button--add"
+            onClick={increaseCount}>
       <svg
         width="12"
         height="12"
@@ -18,7 +19,7 @@ export const AddBtn = (props) => {
           fill="white"
         />
       </svg>
-      <span onClick={increaseCount}>Добавить</span>
+      <span>Добавить</span>
       <i>{count}</i>
     </button>
   );
