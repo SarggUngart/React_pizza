@@ -17,45 +17,39 @@ export const PizzaBlock = (props) => {
     setActiveType(type)
   }
   
-  return (
-    <div className="pizza-block">
-      <img
-        className="pizza-block__image"
-        src={imageUrl}
-        alt="Pizza"
-      />
-      <h4 className="pizza-block__title">{title}</h4>
-      <div className="pizza-block__selector">
-        <ul>
-          {types.map((type, i) => {
-            const activeTypeClass = activeType === type ? 'active' : ''
-            return (
-              <li key={i}
-                  className={activeTypeClass}
-                  onClick={() => onClockActiveTypeHandler(type)}
-              >{typeName[type]}</li>
-            )
-          })}
-        </ul>
-        <ul>
-          {sizes.map(size => {
-            const activeSizeClass = activeSize === size ? 'active' : ''
-            return (
-              <li
-                className={activeSizeClass}
-                key={size}
-                onClick={() => onClickActiveSizeHandler(size)}>
-                {size} см
-              </li>
-            )
-          })}
-        </ul>
-      </div>
-      <div className="pizza-block__bottom">
-        <div className="pizza-block__price">от {price} ₽</div>
-        <AddBtn count={count}
-                increaseCount={increaseCount}/>
-      </div>
+  return (<div className="pizza-block">
+    <img
+      className="pizza-block__image"
+      src={imageUrl}
+      alt="Pizza"
+    />
+    <h4 className="pizza-block__title">{title}</h4>
+    <div className="pizza-block__selector">
+      <ul>
+        {types.map((type, i) => {
+          const activeTypeClass = activeType === type ? 'active' : ''
+          return (<li key={i}
+                      className={activeTypeClass}
+                      onClick={() => onClockActiveTypeHandler(type)}
+          >{typeName[type]}</li>)
+        })}
+      </ul>
+      <ul>
+        {sizes.map(size => {
+          const activeSizeClass = activeSize === size ? 'active' : ''
+          return (<li
+            className={activeSizeClass}
+            key={size}
+            onClick={() => onClickActiveSizeHandler(size)}>
+            {size} см
+          </li>)
+        })}
+      </ul>
     </div>
-  );
+    <div className="pizza-block__bottom">
+      <div className="pizza-block__price">от {price} ₽</div>
+      <AddBtn count={count}
+              increaseCount={increaseCount}/>
+    </div>
+  </div>);
 };

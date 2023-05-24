@@ -3,6 +3,7 @@ import {Header} from "./components/Header/Header";
 import {Categories} from "./components/Categories/Categories";
 import {Sort} from "./components/Sort/Sort";
 import {PizzaBlock} from "./components/PizzaBlock/PizzaBlock";
+import {Skeleton} from "./components/UI/Skeleton";
 
 
 export function App() {
@@ -18,29 +19,35 @@ export function App() {
     fetchData();
   }, [])
   
-  return (
-    <div className="wrapper">
-      <Header/>
-      <div className="content">
-        <div className="container">
-          <div className="content__top">
-            <Categories/>
-            <Sort/>
-          </div>
-          <h2 className="content__title">Все пиццы</h2>
-          <main className="content__items">
-            {items.map(item => {
-              return (
-                <PizzaBlock key={item.id}
-                            {...item}
-                />
-              )
-            })}
-          </main>
+  
+  return (<div className="wrapper">
+    <Header/>
+    <div className="content">
+      <div className="container">
+        <div className="content__top">
+          <Categories/>
+          <Sort/>
         </div>
+        <h2 className="content__title">Все пиццы</h2>
+        <main className="content__items">
+          {items.length
+            ?
+            items.map(item => {
+              return (<PizzaBlock key={item.id}
+                                  {...item}
+              />)
+            })
+            :
+            [...new Array(10)].map((_, i) => {
+              return (
+                <Skeleton key={i}/>
+              )
+            })
+          }
+        </main>
       </div>
     </div>
-  );
+  </div>);
 }
 
 
