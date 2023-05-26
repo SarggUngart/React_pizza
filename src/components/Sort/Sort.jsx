@@ -3,16 +3,15 @@ import {ReactComponent as SortIcon} from '../../assets/img/sort_arrows.svg'
 
 const sortItems = ['популярности', 'цене', 'алфавиту']
 
-export const Sort = () => {
+export const Sort = ({sortList, setSortList}) => {
   
   const [showPopup, setShowPopup] = React.useState(false)
-  const [sortList, setSortList] = React.useState(sortItems[0])
   
-  const popupRef = React.useRef(null)
+    const popUpSortRef = React.useRef(null)
   
   React.useEffect(() => {
     const handleClickOutside = (event) => {
-      if (popupRef.current && !popupRef.current.contains(event.target)) {
+      if (popUpSortRef.current && !popUpSortRef.current.contains(event.target)) {
         setShowPopup(false)
       }
     };
@@ -20,7 +19,7 @@ export const Sort = () => {
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
     };
-  }, [popupRef]);
+  }, [popUpSortRef]);
   
   const onClickShowPopupHandler = () => {
     setShowPopup(true)
@@ -35,15 +34,15 @@ export const Sort = () => {
     <div className="sort__label">
       <SortIcon className='sort__icon'/>
       <b>Сортировка по:</b>
-      <span onClick={onClickShowPopupHandler}>{sortList}</span>
+      <span onClick={onClickShowPopupHandler}>{sortItems[sortList]}</span>
     </div>
-    {showPopup && <div ref={popupRef} className="sort__popup">
+    {showPopup && <div ref={popUpSortRef} className="sort__popup">
       <ul>
-        {sortItems.map(item => {
-          const activeSortClass = sortList === item ? 'active' : ''
+        {sortItems.map((item, i) => {
+          const activeSortClass = sortList === i ? 'active' : ''
           return (<li key={item}
                       className={activeSortClass}
-                      onClick={() => onClickActiveSortHandler(item)}
+                      onClick={() => onClickActiveSortHandler(i)}
           >{item}</li>)
         })}
       </ul>

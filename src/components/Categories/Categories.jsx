@@ -1,9 +1,8 @@
 import React from 'react';
 
-const categories = ['Все', 'Мясные', 'Вегетарианская', 'Гриль', 'Острые', 'Закрытые']
+const categories = ['Все', 'Мясные', 'Вегетарианская', 'Острые']
 
-export const Categories = () => {
-  const [category, setCategory] = React.useState(categories[0])
+export const Categories = ({category, setCategory}) => {
   
   const onClickActiveCatHandler = (activeCategory) => {
     setCategory(activeCategory)
@@ -11,11 +10,11 @@ export const Categories = () => {
   
   return (<nav className="categories">
     <ul className='categories__list'>
-      {categories.map(cat => {
-        const activeCategoryClass = category === cat ? 'active' : ''
+      {categories.map((cat, i) => {
+        const activeCategoryClass = category === i ? 'active' : ''
         return (<li key={cat}
                     className={activeCategoryClass}
-                    onClick={() => onClickActiveCatHandler(cat)}>
+                    onClick={() => onClickActiveCatHandler(i)}>
           {cat}
         </li>)
       })}

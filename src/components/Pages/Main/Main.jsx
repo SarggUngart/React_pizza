@@ -8,21 +8,30 @@ import axios from 'axios'
 export const Main = () => {
   
   const [items, setItems] = React.useState([])
+  const [category, setCategory] = React.useState(0)
+  const [sortList, setSortList] = React.useState(0)
   
   const baseUrl = 'https://646b73777d3c1cae4ce3d264.mockapi.io/items'
+  const categoryPath = category === 0 ? '' : category
   
   React.useEffect(() => {
-    axios.get(baseUrl)
+    axios.get(`${baseUrl}?category=${categoryPath}`)
       .then(res => setItems(res.data))
-  }, [])
+  }, [category])
   
   return (
     <div className='container'>
       <div className="content__top">
-        <Categories/>
-        <Sort/>
+        <Categories
+          category={category}
+          setCategory={setCategory}
+        />
+        <Sort
+          sortList={sortList}
+          setSortList={setSortList}
+        />
       </div>
-      <h2 className="content__title">Все пиццы</h2>
+      <h2 className="content__title">Наши пиццы</h2>
       <div className="content__items">
         {items.length
           ?
