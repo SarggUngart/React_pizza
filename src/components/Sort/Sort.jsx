@@ -8,8 +8,22 @@ export const Sort = () => {
   const [showPopup, setShowPopup] = React.useState(false)
   const [sortList, setSortList] = React.useState(sortItems[0])
   
+  const popupRef = React.useRef(null)
+  
+  React.useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (popupRef.current && !popupRef.current.contains(event.target)) {
+        setShowPopup(false)
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [popupRef]);
+  
   const onClickShowPopupHandler = () => {
-    setShowPopup(!showPopup)
+    setShowPopup(true)
   }
   
   const onClickActiveSortHandler = (activeSort) => {
@@ -23,7 +37,7 @@ export const Sort = () => {
       <b>Сортировка по:</b>
       <span onClick={onClickShowPopupHandler}>{sortList}</span>
     </div>
-    {showPopup && <div className="sort__popup">
+    {showPopup && <div ref={popupRef} className="sort__popup">
       <ul>
         {sortItems.map(item => {
           const activeSortClass = sortList === item ? 'active' : ''

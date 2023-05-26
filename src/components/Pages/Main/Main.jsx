@@ -3,23 +3,21 @@ import {Categories} from "../../Categories/Categories";
 import {Sort} from "../../Sort/Sort";
 import {PizzaBlock} from "../../PizzaBlock/PizzaBlock";
 import {Skeleton} from "../../UI/Skeleton";
+import axios from 'axios'
 
 export const Main = () => {
   
   const [items, setItems] = React.useState([])
   
+  const baseUrl = 'https://646b73777d3c1cae4ce3d264.mockapi.io/items'
+  
   React.useEffect(() => {
-    async function fetchData() {
-      const response = await fetch('https://646b73777d3c1cae4ce3d264.mockapi.io/items');
-      const responseData = await response.json();
-      setItems(responseData);
-    }
-    
-    fetchData();
+    axios.get(baseUrl)
+      .then(res => setItems(res.data))
   }, [])
   
   return (
-    <div  className='container'>
+    <div className='container'>
       <div className="content__top">
         <Categories/>
         <Sort/>
