@@ -1,8 +1,9 @@
 import React from 'react';
+import Search from "../Search/Search";
 
 const categories = ['Все', 'Мясные', 'Вегетарианская', 'Острые']
 
-export const Categories = ({categoryValue, setCategoryValue}) => {
+export const Categories = ({categoryValue, setCategoryValue, setInputValue, inputValue}) => {
   
   const onClickActiveCatHandler = (activeCategory) => {
     setCategoryValue(activeCategory)
@@ -19,6 +20,11 @@ export const Categories = ({categoryValue, setCategoryValue}) => {
         </li>)
       })}
     </ul>
+    
+    <Search setInputValue={setInputValue}
+            inputValue={inputValue}/>
+  
   </nav>);
+  
 };
 

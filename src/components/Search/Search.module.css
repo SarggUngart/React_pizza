@@ -1,0 +1,42 @@
+.container {
+  position: relative;
+}
+
+.input {
+  width: 280px;
+  padding: 12px 40px;
+  border-radius: 12px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  font-size: 16px;
+}
+@media (max-width: 368px) {
+  .input {
+    width: 100%;
+  }
+}
+
+.searchIco {
+  width: 25px;
+  fill: rgba(0, 0, 0, 0.4);
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.closeIco {
+  width: 15px;
+  height: 18px;
+  fill: rgba(0, 0, 0, 0.4);
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  transition: fill 0.2s linear;
+}
+.closeIco:hover {
+  fill: rgba(0, 0, 0, 0.8);
+}
+
+/*# sourceMappingURL=Search.module.css.map */

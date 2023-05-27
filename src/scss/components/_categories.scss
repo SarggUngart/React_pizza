@@ -1,6 +1,18 @@
 @import '../variables';
 
 .categories {
+  display: flex;
+
+  align-items: baseline;
+  @media (max-width: 1030px) {
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+  @media (max-width: 368px) {
+    width: 100%;
+  }
+  
+
   ul {
     display: flex;
     gap: 15px;

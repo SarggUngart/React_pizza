@@ -227,6 +227,21 @@ a {
   font-size: 16px;
 }
 
+.categories {
+  display: flex;
+  align-items: baseline;
+}
+@media (max-width: 1030px) {
+  .categories {
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+}
+@media (max-width: 368px) {
+  .categories {
+    width: 100%;
+  }
+}
 .categories ul {
   display: flex;
   gap: 15px;
@@ -282,7 +297,6 @@ a {
 .sort__label {
   display: flex;
   gap: 10px;
-  align-items: center;
 }
 .sort__label span {
   color: #fe5f1e;

@@ -11,11 +11,11 @@ export const Main = () => {
   const [categoryValue, setCategoryValue] = React.useState(0)
   const [sortItem, setSortItem] = React.useState(sortItems[0])
   const [sortOrder, setSortOrder] = React.useState(false)
+  const [inputValue, setInputValue] = React.useState('')
   
   const baseUrl = 'https://646b73777d3c1cae4ce3d264.mockapi.io/items'
   const categoryPath = categoryValue === 0 ? '' : 'category=' + categoryValue
-  let sortOrderPath = sortOrder ? 'asc' : 'desc'
-  
+  const sortOrderPath = !sortOrder ? 'asc' : 'desc'
   
   React.useEffect(() => {
     axios.get(`${baseUrl}?${categoryPath}&sortBy=${sortItem.sortProperty}&order=${sortOrderPath}`)
@@ -26,6 +26,8 @@ export const Main = () => {
     <div className='container'>
       <div className="content__top">
         <Categories
+          setInputValue={setInputValue}
+          inputValue={inputValue}
           categoryValue={categoryValue}
           setCategoryValue={setCategoryValue}
         />
@@ -40,11 +42,13 @@ export const Main = () => {
       <div className="content__items">
         {items.length
           ?
-          items.map(item => {
-            return (<PizzaBlock key={item.id}
-                                {...item}
-            />)
-          })
+          items
+            .filter(item => item.title.toLowerCase().includes(inputValue.toLowerCase()))
+            .map(item => {
+              return (<PizzaBlock key={item.id}
+                                  {...item}
+              />)
+            })
           :
           [...new Array(10)].map((_, i) => {
             return (

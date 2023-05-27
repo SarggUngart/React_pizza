@@ -14,15 +14,15 @@
     &:active {
       transform: translateY(0.5px);
     }
-    &:hover{
-      fill:  #fe5f1e;;
+
+    &:hover {
+      fill: #fe5f1e;;
     }
   }
 
   &__label {
     display: flex;
     gap: 10px;
-    align-items: center;
 
 
     span {
