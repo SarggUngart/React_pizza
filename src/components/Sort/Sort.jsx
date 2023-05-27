@@ -1,13 +1,16 @@
 import React from 'react';
 import {ReactComponent as SortIcon} from '../../assets/img/sort_arrows.svg'
 
-const sortItems = ['популярности', 'цене', 'алфавиту']
+export const sortItems = [
+  {name: 'популярности', sortProperty: 'rating'},
+  {name: 'цене', sortProperty: 'price'},
+  {name: 'алфавиту', sortProperty: 'title'}]
 
-export const Sort = ({sortList, setSortList}) => {
+export const Sort = ({sortItem, setSortItem, sortOrder, setSortOrder}) => {
   
   const [showPopup, setShowPopup] = React.useState(false)
   
-    const popUpSortRef = React.useRef(null)
+  const popUpSortRef = React.useRef(null)
   
   React.useEffect(() => {
     const handleClickOutside = (event) => {
@@ -25,25 +28,28 @@ export const Sort = ({sortList, setSortList}) => {
     setShowPopup(true)
   }
   
-  const onClickActiveSortHandler = (activeSort) => {
-    setSortList(activeSort)
+  const onClickActiveSortHandler = (activeSortItem) => {
+    setSortItem(activeSortItem)
     setShowPopup(false)
   }
   
+  
   return (<div className="sort">
     <div className="sort__label">
-      <SortIcon className='sort__icon'/>
+      <div onClick={() => setSortOrder(!sortOrder)}>
+        <SortIcon className='sort__icon'/>
+      </div>
       <b>Сортировка по:</b>
-      <span onClick={onClickShowPopupHandler}>{sortItems[sortList]}</span>
+      <span onClick={onClickShowPopupHandler}>{sortItem.name}</span>
     </div>
     {showPopup && <div ref={popUpSortRef} className="sort__popup">
       <ul>
         {sortItems.map((item, i) => {
-          const activeSortClass = sortList === i ? 'active' : ''
-          return (<li key={item}
+          const activeSortClass = sortItem.sortProperty === item.sortProperty ? 'active' : ''
+          return (<li key={i}
                       className={activeSortClass}
-                      onClick={() => onClickActiveSortHandler(i)}
-          >{item}</li>)
+                      onClick={() => onClickActiveSortHandler(item)}
+          >{item.name}</li>)
         })}
       </ul>
     </div>}

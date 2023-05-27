@@ -1,6 +1,6 @@
 import React from 'react';
 import {Categories} from "../../Categories/Categories";
-import {Sort} from "../../Sort/Sort";
+import {Sort, sortItems} from "../../Sort/Sort";
 import {PizzaBlock} from "../../PizzaBlock/PizzaBlock";
 import {Skeleton} from "../../UI/Skeleton";
 import axios from 'axios'
@@ -8,27 +8,32 @@ import axios from 'axios'
 export const Main = () => {
   
   const [items, setItems] = React.useState([])
-  const [category, setCategory] = React.useState(0)
-  const [sortList, setSortList] = React.useState(0)
+  const [categoryValue, setCategoryValue] = React.useState(0)
+  const [sortItem, setSortItem] = React.useState(sortItems[0])
+  const [sortOrder, setSortOrder] = React.useState(false)
   
   const baseUrl = 'https://646b73777d3c1cae4ce3d264.mockapi.io/items'
-  const categoryPath = category === 0 ? '' : category
+  const categoryPath = categoryValue === 0 ? '' : 'category=' + categoryValue
+  let sortOrderPath = sortOrder ? 'asc' : 'desc'
+  
   
   React.useEffect(() => {
-    axios.get(`${baseUrl}?category=${categoryPath}`)
+    axios.get(`${baseUrl}?${categoryPath}&sortBy=${sortItem.sortProperty}&order=${sortOrderPath}`)
       .then(res => setItems(res.data))
-  }, [category])
+  }, [categoryValue, sortItem, sortOrderPath])
   
   return (
     <div className='container'>
       <div className="content__top">
         <Categories
-          category={category}
-          setCategory={setCategory}
+          categoryValue={categoryValue}
+          setCategoryValue={setCategoryValue}
         />
         <Sort
-          sortList={sortList}
-          setSortList={setSortList}
+          sortItem={sortItem}
+          setSortItem={setSortItem}
+          sortOrder={sortOrder}
+          setSortOrder={setSortOrder}
         />
       </div>
       <h2 className="content__title">Наши пиццы</h2>
