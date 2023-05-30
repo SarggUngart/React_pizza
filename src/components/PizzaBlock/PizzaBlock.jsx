@@ -18,7 +18,7 @@ export const PizzaBlock = (props) => {
   }
   
   return (<div className="pizza-block">
-    <img
+       <img
       className="pizza-block__image"
       src={imageUrl}
       alt="Pizza"

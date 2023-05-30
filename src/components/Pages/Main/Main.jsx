@@ -1,18 +1,15 @@
 import React from 'react';
 import {Categories} from "../../Categories/Categories";
-import {Sort, sortItems} from "../../Sort/Sort";
+import {Sort} from "../../Sort/Sort";
 import {PizzaBlock} from "../../PizzaBlock/PizzaBlock";
 import {Skeleton} from "../../UI/Skeleton";
 import axios from 'axios'
 import {useSelector} from "react-redux";
 
 export const Main = () => {
-  const categoryValue = useSelector(state => state.filter.categoryValue)
+  const {categoryValue, sortValue, sortOrder, inputValue} = useSelector(state => state.filter)
   
   const [items, setItems] = React.useState([])
-  const [sortItem, setSortItem] = React.useState(sortItems[0])
-  const [sortOrder, setSortOrder] = React.useState(false)
-  const [inputValue, setInputValue] = React.useState('')
   
   const baseUrl = 'https://646b73777d3c1cae4ce3d264.mockapi.io/items'
   const categoryPath = categoryValue === 0 ? '' : 'category=' + categoryValue
@@ -20,23 +17,15 @@ export const Main = () => {
   // const searchPath = inputValue ? `&search=${inputValue}` : ''
   
   React.useEffect(() => {
-    axios.get(`${baseUrl}?${categoryPath}&sortBy=${sortItem.sortProperty}&order=${sortOrderPath}`)
+    axios.get(`${baseUrl}?${categoryPath}&sortBy=${sortValue.sortProperty}&order=${sortOrderPath}`)
       .then(res => setItems(res.data))
-  }, [categoryValue, sortItem, sortOrderPath, inputValue])
-  
+  }, [categoryValue, sortValue, sortOrderPath, inputValue])
   
   return (
     <div className='container'>
       <div className="content__top">
-        <Categories
-          setInputValue={setInputValue}
-          inputValue={inputValue}
-        />
+        <Categories/>
         <Sort
-          sortItem={sortItem}
-          setSortItem={setSortItem}
-          sortOrder={sortOrder}
-          setSortOrder={setSortOrder}
         />
       </div>
       <h2 className="content__title">Наши пиццы</h2>

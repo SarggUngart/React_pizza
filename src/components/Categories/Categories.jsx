@@ -5,11 +5,10 @@ import {setCategoryValue} from "../../redux/slices/filterSlice";
 
 const categories = ['Все', 'Мясные', 'Вегетарианская', 'Острые']
 
-export const Categories = ({setInputValue, inputValue}) => {
+export const Categories = () => {
   
   const categoryValue = useSelector(state => state.filter.categoryValue)
   const dispatch = useDispatch()
-  console.log(categoryValue)
   
   const onClickActiveCatHandler = (activeCategory) => {
     dispatch(setCategoryValue(activeCategory))
@@ -26,10 +25,7 @@ export const Categories = ({setInputValue, inputValue}) => {
         </li>)
       })}
     </ul>
-    
-    <Search setInputValue={setInputValue}
-            inputValue={inputValue}/>
-  
+    <Search/>
   </nav>);
   
 };
