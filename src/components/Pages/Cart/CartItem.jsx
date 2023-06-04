@@ -18,9 +18,9 @@ export const CartItem = () => {
       </div>
       
       <div className="cart__item-count">
-        <buttnon className="button button--outline button--circle cart__item-count-minus">
+        <button className="button button--outline button--circle cart__item-count-minus">
           <MinusIcon/>
-        </buttnon>
+        </button>
         <b>2</b>
         <button className="button button--outline button--circle cart__item-count-plus">
           <PlusIcon/>

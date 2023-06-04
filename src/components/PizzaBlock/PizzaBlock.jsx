@@ -1,15 +1,29 @@
 import React from 'react';
 import {AddBtn} from "../Buttons/AddBtn";
+import {useDispatch, useSelector} from "react-redux";
+
+import {addItem} from "../../redux/slices/cartSlice";
 
 export const PizzaBlock = (props) => {
-  const {title, imageUrl, price, sizes, types} = props
+  const {title, id, imageUrl, price, sizes, types} = props
   
   const typeName = ['тонкое', 'традиционное']
-  const [count, setCount] = React.useState(0)
+  const dispatch = useDispatch()
+  const items = useSelector(state => state.cart.items)
   const [activeSize, setActiveSize] = React.useState(sizes[0])
   const [activeType, setActiveType] = React.useState(types[0])
   
-  const increaseCount = () => setCount(prev => prev + 1)
+  const onClickAdd = () => {
+    const item = {
+      id,
+      title,
+      price,
+      imageUrl,
+      type: activeType,
+      size: activeSize
+    }
+    dispatch(addItem(item))
+  }
   const onClickActiveSizeHandler = (size) => {
     setActiveSize(size)
   }
@@ -18,7 +32,7 @@ export const PizzaBlock = (props) => {
   }
   
   return (<div className="pizza-block">
-       <img
+    <img
       className="pizza-block__image"
       src={imageUrl}
       alt="Pizza"
@@ -48,8 +62,9 @@ export const PizzaBlock = (props) => {
     </div>
     <div className="pizza-block__bottom">
       <div className="pizza-block__price">от {price} ₽</div>
-      <AddBtn count={count}
-              increaseCount={increaseCount}/>
+      <AddBtn btnTitle={'Добавить'}
+              items={items}
+              onClickAdd={onClickAdd}/>
     </div>
   </div>);
 };

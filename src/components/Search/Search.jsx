@@ -13,6 +13,7 @@ const Search = () => {
   
   const onClickClear = () => {
     if (inputRef) {
+      dispatch(setInputValue(''))
       setLocalValue('')
       inputRef.current.focus()
     }
@@ -20,7 +21,7 @@ const Search = () => {
   
   const updateSearchValue = React.useCallback(debounce((str) => {
     dispatch(setInputValue(str))
-  }, 500), [])
+  }, 350), [])
   
   const onChangeInput = event => {
     setLocalValue(event.currentTarget.value)

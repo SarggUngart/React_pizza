@@ -28,6 +28,11 @@ export const filterSlice = createSlice({
   }
 })
 
-export const {setCategoryValue, setSortValue, setSortOrder, setInputValue} = filterSlice.actions
+export const {
+  setCategoryValue,
+  setSortValue,
+  setSortOrder,
+  setInputValue
+} = filterSlice.actions
 export default filterSlice.reducer
 

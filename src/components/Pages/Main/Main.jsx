@@ -1,25 +1,34 @@
 import React from 'react';
 import {Categories} from "../../Categories/Categories";
-import {Sort} from "../../Sort/Sort";
+import {Sort, sortItems} from "../../Sort/Sort";
 import {PizzaBlock} from "../../PizzaBlock/PizzaBlock";
 import {Skeleton} from "../../UI/Skeleton";
 import axios from 'axios'
-import {useSelector} from "react-redux";
+import qs from 'qs'
+import {useDispatch, useSelector} from "react-redux";
+import {useNavigate} from "react-router-dom";
+import {setFilters} from "../../../redux/slices/filterSlice";
+
 
 export const Main = () => {
   const {categoryValue, sortValue, sortOrder, inputValue} = useSelector(state => state.filter)
-  
   const [items, setItems] = React.useState([])
+  
   
   const baseUrl = 'https://646b73777d3c1cae4ce3d264.mockapi.io/items'
   const categoryPath = categoryValue === 0 ? '' : 'category=' + categoryValue
   const sortOrderPath = !sortOrder ? 'asc' : 'desc'
   // const searchPath = inputValue ? `&search=${inputValue}` : ''
   
+  
+  
   React.useEffect(() => {
     axios.get(`${baseUrl}?${categoryPath}&sortBy=${sortValue.sortProperty}&order=${sortOrderPath}`)
       .then(res => setItems(res.data))
-  }, [categoryValue, sortValue, sortOrderPath, inputValue])
+  }, [categoryValue, sortValue, sortOrder, inputValue])
+  
+  
+  
   
   return (
     <div className='container'>
