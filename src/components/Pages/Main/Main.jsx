@@ -21,13 +21,10 @@ export const Main = () => {
   // const searchPath = inputValue ? `&search=${inputValue}` : ''
   
   
-  
   React.useEffect(() => {
     axios.get(`${baseUrl}?${categoryPath}&sortBy=${sortValue.sortProperty}&order=${sortOrderPath}`)
       .then(res => setItems(res.data))
   }, [categoryValue, sortValue, sortOrder, inputValue])
-  
-  
   
   
   return (

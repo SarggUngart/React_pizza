@@ -12,6 +12,7 @@ export function App() {
   
   const items = useSelector(state => state.cart.items)
   
+  
   return (
     <div className="wrapper">
       <Header/>

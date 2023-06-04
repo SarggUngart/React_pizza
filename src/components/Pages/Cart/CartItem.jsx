@@ -5,9 +5,9 @@ import {ReactComponent as MinusIcon} from "../../../assets/img/minus.svg";
 import {useDispatch} from "react-redux";
 import {addItem, minusItem, removeItem} from "../../../redux/slices/cartSlice";
 
-export const CartItem = ({title, id, imageUrl, type, price, count}) => {
+export const CartItem = ({title, id, imageUrl, type, price, count, size}) => {
   const dispatch = useDispatch()
-  
+  console.log(size)
   const onClickPlus = () => {
     dispatch(addItem({
       id
@@ -18,7 +18,7 @@ export const CartItem = ({title, id, imageUrl, type, price, count}) => {
     dispatch(minusItem(id))
   }
   
-  const onClickRemove = (id) => {
+  const onClickRemove = () => {
     dispatch(removeItem(id))
   }
   
@@ -31,7 +31,7 @@ export const CartItem = ({title, id, imageUrl, type, price, count}) => {
     </div>
     <div className="cart__item-info">
       <h3>{title}</h3>
-      <p>{type} тесто, 26 см.</p>
+      <p>{type} тесто, {size} см.</p>
     </div>
     
     <div className="cart__item-count">
@@ -47,7 +47,7 @@ export const CartItem = ({title, id, imageUrl, type, price, count}) => {
       <b>{price * count} ₽</b>
     </div>
     <div className="cart__item-remove">
-      <button onClick={() => onClickRemove(id)} className="button button--outline button--circle">
+      <button onClick={onClickRemove} className="button button--outline button--circle">
         <CrossIcon/>
       </button>
     </div>

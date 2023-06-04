@@ -7,6 +7,7 @@ import {addItem} from "../../redux/slices/cartSlice";
 export const PizzaBlock = (props) => {
   const {title, id, imageUrl, price, sizes, types} = props
   
+  
   const typeName = ['тонкое', 'традиционное']
   const dispatch = useDispatch()
   const countItem = useSelector(state => state.cart.items.find(p => p.id === id))
@@ -26,9 +27,7 @@ export const PizzaBlock = (props) => {
     }
     dispatch(addItem(item))
   }
-  const onClickActiveSizeHandler = (size) => {
-    setActiveSize(size)
-  }
+  
   const onClockActiveTypeHandler = (type) => {
     setActiveType(type)
   }
@@ -56,7 +55,7 @@ export const PizzaBlock = (props) => {
           return (<li
             className={activeSizeClass}
             key={size}
-            onClick={() => onClickActiveSizeHandler(size)}>
+            onClick={() => setActiveSize(size)}>
             {size} см
           </li>)
         })}

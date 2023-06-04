@@ -29,16 +29,23 @@ export const cartSlice = createSlice({
       if (findItem) {
         findItem.count--
       }
+      if (findItem.count <= 0) {
+        state.items = state.items.filter(p => p.id !== action.payload)
+      }
+      state.totalPrice -= findItem.price
+      
     },
     removeItem: (state, action) => {
       state.items = state.items.filter(p => p.id !== action.payload)
+      state.totalPrice = state.items.reduce((sum, item) => {
+        return (item.price * item.count) + sum
+      }, 0)
     },
     clearItems: (state) => {
       state.items.length = 0
-    }
+      state.totalPrice = 0
+    },
   }
-  
-  
 })
 
 export const {
