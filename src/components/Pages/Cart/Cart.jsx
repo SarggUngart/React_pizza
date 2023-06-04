@@ -4,8 +4,16 @@ import {ReactComponent as CartIcon} from "../../../assets/img/cart.svg";
 import {ReactComponent as TrashIcon} from "../../../assets/img/trash.svg";
 import {ReactComponent as ArrowLeftIcon} from "../../../assets/img/grey-arrow-left.svg";
 import {Link} from "react-router-dom";
+import {useDispatch, useSelector} from "react-redux";
 
 export const Cart = () => {
+  
+  const dispatch = useDispatch()
+  const items = useSelector(state => state.cart.items)
+  
+  
+  
+  
   return (
     <div className='container container--cart'>
       
@@ -21,7 +29,11 @@ export const Cart = () => {
           </div>
         </div>
         
-        <CartItem/>
+        {items && items.map(item => {
+          return <CartItem key={item.id}
+                           {...item}
+          />
+        })}
         
         <div className="cart__bottom">
           <div className="cart__bottom-details">
