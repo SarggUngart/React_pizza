@@ -9,9 +9,11 @@ export const PizzaBlock = (props) => {
   
   const typeName = ['тонкое', 'традиционное']
   const dispatch = useDispatch()
-  const items = useSelector(state => state.cart.items)
+  const countItem = useSelector(state => state.cart.items.find(p => p.id === id))
   const [activeSize, setActiveSize] = React.useState(sizes[0])
   const [activeType, setActiveType] = React.useState(types[0])
+  
+  const addedCount = countItem ? countItem.count : '0'
   
   const onClickAdd = () => {
     const item = {
@@ -19,7 +21,7 @@ export const PizzaBlock = (props) => {
       title,
       price,
       imageUrl,
-      type: activeType,
+      type: typeName[activeType],
       size: activeSize
     }
     dispatch(addItem(item))
@@ -63,7 +65,7 @@ export const PizzaBlock = (props) => {
     <div className="pizza-block__bottom">
       <div className="pizza-block__price">от {price} ₽</div>
       <AddBtn btnTitle={'Добавить'}
-              items={items}
+              count={addedCount}
               onClickAdd={onClickAdd}/>
     </div>
   </div>);

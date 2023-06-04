@@ -8,6 +8,10 @@ export const Header = () => {
   
   const {items, totalPrice} = useSelector(state => state.cart)
   
+  const totalCount = items.reduce((total, item) => {
+    return total + item.count;
+  }, 0);
+  
   return (<header className="header">
     <div className="container">
       <div className="header__logo">
@@ -25,7 +29,7 @@ export const Header = () => {
             <span>{totalPrice} ₽</span>
             <div className="button__delimiter"></div>
             <CartIcon/>
-            <span>{items.length}</span>
+            <span>{totalCount}</span>
           </button>
         </div>
       </Link>
