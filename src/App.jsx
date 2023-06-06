@@ -1,10 +1,10 @@
 import React from 'react';
 import {Header} from "./components/Header/Header";
-import {Main} from "./components/Pages/Main/Main";
-import {NotFound} from "./components/Pages/NotFound/NotFound";
+import {Main} from "./components/Pages/MainPage/Main";
+import {NotFound} from "./components/Pages/NotFoundPage/NotFound";
 import {Route, Routes} from "react-router-dom";
-import {Cart} from "./components/Pages/Cart/Cart";
-import {EmptyCart} from "./components/Pages/Cart/EmptyCart";
+import {Cart} from "./components/Pages/CartPage/Cart";
+import {EmptyCart} from "./components/Pages/CartPage/EmptyCart";
 import {useSelector} from "react-redux";
 
 
