@@ -3,9 +3,8 @@ import {Categories} from "../../Categories/Categories";
 import {Sort} from "../../Sort/Sort";
 import {PizzaBlock} from "../../PizzaBlock/PizzaBlock";
 import {Skeleton} from "../../UI/Skeleton";
-import axios from 'axios'
 import {useDispatch, useSelector} from "react-redux";
-import {setItems} from "../../../redux/slices/pizzaSlice";
+import {fetchPizzas} from "../../../redux/slices/pizzaSlice";
 
 
 export const Main = () => {
@@ -17,16 +16,15 @@ export const Main = () => {
   React.useEffect(() => {
     const categoryPath = categoryValue === 0 ? '' : 'category=' + categoryValue
     const sortOrderPath = !sortOrder ? 'asc' : 'desc'
+    const sortValuePath = `sortBy=${sortValue.sortProperty}`
     // const searchPath = inputValue ? `&search=${inputValue}` : ''
     const getItems = async () => {
       try {
-        const res = await axios.get(`https://646b73777d3c1cae4ce3d264.mockapi.io/items?${categoryPath}&sortBy=${sortValue.sortProperty}&order=${sortOrderPath}`)
-        dispatch(setItems(res.data))
+        dispatch(fetchPizzas({categoryPath, sortOrderPath, sortValuePath}))
       } catch (e) {
         console.log(e)
       }
     }
-    
     getItems()
   }, [categoryValue, sortValue, sortOrder, inputValue])
   
